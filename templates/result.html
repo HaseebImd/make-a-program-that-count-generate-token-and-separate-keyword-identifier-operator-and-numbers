@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Result</title>
+     <style>
+      * {
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+
+
+.search-form {
+  position: relative;
+  margin: 50px auto 0;
+  width: 1000px;
+}
+.button {
+  background: teal;
+  position: absolute;
+  height: 100%;
+  border-radius: 10px;
+  width: 300px;
+  height: 30px;
+  transition: all 0.5s cubic-bezier(.87, -.41, .19, 1.44);
+}
+
+</style>
+  </head>
+  <body>
+
+<div class="search-form">    
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in dict.data %}
+      <tr>
+        
+        <td colspan="2">{{i}}</td>
+      
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<h2 style="color:teal;"><strong>Summary</strong></h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Tokens</th>
+        <th scope="col">Operators</th>
+        <th scope="col">Symbols</th>
+        <th scope="col">Keywords</th>
+        <th scope="col">Valid Identifiers</th>
+        <th scope="col">Invalid Identifers</th>
+        <th scope="col">Numbers</th>
+        <th scope="col">Invalid Operators</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{dict.token}}</td>
+      <td>{{dict.operators}}</td>
+      <td>{{dict.symbols}}</td>
+      <td>{{dict.keywords}}</td>
+      <td>{{dict.identifiers}}</td>
+      <td>{{dict.inidentifiers}}</td>
+      <td>{{dict.numbers}}</td>
+      <td>{{dict.inoperatorss}}</td>
+     
+    <tr>
+    </tbody>
+  </table>
+
+
+  <form action="/" method="GET">
+      {% csrf_token %}
+      <div>
+        <input class="button" type="submit" value="Back" class="btn-design">
+      </div>
+
+      <br>
+  </form>
+
+
+</div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
