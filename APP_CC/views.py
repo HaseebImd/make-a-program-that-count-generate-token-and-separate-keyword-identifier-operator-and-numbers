@@ -30,6 +30,7 @@ class Index(View):
                 "inidentifiers": Mydata[1][5]['Total Invalid Identifiers'],
                 "numbers": Mydata[1][6]['Total Numbers'],
                 "inoperatorss": Mydata[1][7]['Total Invalid Operators'],
+                "library": Mydata[1][8]['library']
 
             }
             return render(request, 'result.html', {'dict': dict})
@@ -69,7 +70,9 @@ def MyFunction(InputString):
     totalinvalididentifiers=[]
     totalnumbers=[]
     totalinvalidoperators=[]
-
+    totallibray=[]
+    library = ["#include<iostream>", "#include<conio.h>"]
+ 
 
 
     for ch in userString:
@@ -87,6 +90,11 @@ def MyFunction(InputString):
             if ch not in totalsymbols:
                 data.append({"Valid Symbol": ch})
                 totalsymbols.append(ch)
+        elif ch in library:
+            if ch not in totallibray:
+                data.append({"Libray": ch})
+                totallibray.append(ch)
+
 
         elif ch in operators:
             if ch not in totaloperators:
@@ -111,7 +119,7 @@ def MyFunction(InputString):
 
     totalTokens = len(totaloperators)+len(totalsymbols) + \
         len(totalkeywords)+len(totalidentifiers) + \
-        len(totalinvalididentifiers)+len(totalnumbers)+len(totalinvalidoperators)
+        len(totalinvalididentifiers)+len(totalnumbers)+len(totalinvalidoperators)+len(totallibray)
     summary.append({"Total Tokens": totalTokens})
     summary.append({"Total Operators": len(totaloperators)})
     summary.append({"Total Symbols": len(totalsymbols)})
@@ -120,6 +128,7 @@ def MyFunction(InputString):
     summary.append({"Total Invalid Identifiers": len(totalinvalididentifiers)})
     summary.append({"Total Numbers": len(totalnumbers)})
     summary.append({"Total Invalid Operators": len(totalinvalidoperators)})
+    summary.append({"library": len(totallibray)})
     totalData.append(data)
     totalData.append(summary)
     return totalData
